@@ -66,7 +66,7 @@ def rootFinder(f, startAt, endAt, selectedMethod):
 
         # Update our domain for this iteration
         startAt = startAt + 0.1
-        
+
 
 def bisectionMethod(f, left, right, iterationAllowed):
     """
@@ -146,7 +146,7 @@ def secantMethod(f, previewX, currentX):
 
         # In case we found our root, Return the root and the iteration number
         if abs(nextX - currentX) < MAX_ERROR:
-            return int(nextX * 10 * 5) / 10 * 5, i + 1
+            return int(nextX * 10 ** 5) / 10 ** 5, i + 1
 
         # Update the previewX to be the currentX
         previewX = currentX
@@ -160,9 +160,9 @@ def secantMethod(f, previewX, currentX):
 
 
 # Our Program Driver
-if _name_ == "_main_":
+if __name__ == "__main__":
     x = sp.symbols('x')
-    function = x * 4 + x * 3 - 3 * x ** 2
+    function = x ** 4 + x ** 3 - 3 * x ** 2
     domainStart = -3
     domainEnd = 2
 
