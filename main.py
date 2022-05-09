@@ -127,4 +127,50 @@ def newtonRaphsonMethod(f, g, currentX):
     print('Failed To Find The Root, The Newton Raphson Method Is Not Suitable For This Function')
     exit()
     
-    
+    def secantMethod(f, previewX, currentX):
+    """
+    Finding the function f root between the domain range [previewX To currentX]
+
+    :param f: Our function
+    :param previewX: The leftDomain domain of the function
+    :param currentX: The rightDomain domain of the function
+    :return: The root of the function in the domain [previewX To currentX] if existed, else according failed message
+    """
+
+    # Search the root within the maximum allowed iteration
+    for i in range(100):
+
+        # Variable to store the next X
+        nextX = (previewX * f(currentX) - currentX * f(previewX)) / (f(currentX) - f(previewX))
+
+        # In case we found our root, Return the root and the iteration number
+        if abs(nextX - currentX) < MAX_ERROR:
+            return int(nextX * 10 * 5) / 10 * 5, i + 1
+
+        # Update the previewX to be the currentX
+        previewX = currentX
+
+        # Update the currentX to be new one
+        currentX = nextX
+
+    # In case we didn't find the root within the allowed amount iteration, Send fail message and shut down the program
+    print('Failed To Find The Root, The Secant Method Is Not Suitable For This Function')
+    exit()
+
+
+# Our Program Driver
+if _name_ == "_main_":
+    x = sp.symbols('x')
+    function = x * 4 + x * 3 - 3 * x ** 2
+    domainStart = -3
+    domainEnd = 2
+
+    while True:
+        userChoice = input('Input the wanted Method\n1 --> Bisection\n2 --> Newton-Raphson\n3 --> Secant\nInput --> ')
+        if userChoice != '1' and userChoice != '2' and userChoice != '3':
+            print('Invalid Input, Try [One To Three]')
+
+        else:
+            print()
+            break
+    rootFinder(function, domainStart, domainEnd, userChoice)
