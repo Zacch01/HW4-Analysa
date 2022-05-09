@@ -66,3 +66,65 @@ def rootFinder(f, startAt, endAt, selectedMethod):
 
         # Update our domain for this iteration
         startAt = startAt + 0.1
+        
+
+def bisectionMethod(f, left, right, iterationAllowed):
+    """
+    Finding the function f root between the domain [leftDomain To rightDomain]
+
+    :param f: Our function
+    :param left: The leftDomain domain of the function
+    :param right: The rightDomain domain of the function
+    :param iterationAllowed: The maximum iteration allowed
+    :return: The root of the function if existed, else according failed message
+    """
+    # Search the root within the maximum allowed iteration
+    for i in range(iterationAllowed):
+
+        # Variable to store the middle of the function segment
+        middle = left + (right - left) / 2
+
+        # In case we found our root, Return the root and the iteration number
+        if abs(f(middle)) < MAX_ERROR:
+            return int(middle * 10 ** 5) / 10 ** 5, i + 1
+
+        # In case the root is between the leftDomain To the middle, Update rightDomain to be the middle
+        elif f(left) * f(middle) < 0:
+            right = middle
+
+        # In case the root is between the middle To the right, Update leftDomain segment to be the middle
+        elif f(middle) * f(right) < 0:
+            left = middle
+
+    # In case we didn't find the root within the allowed amount iteration, Send fail message and shut down the program
+    print('Failed To Find The Root, The Bisection Method Is Not Suitable For This Function')
+    exit()
+
+
+def newtonRaphsonMethod(f, g, currentX):
+    """
+    Finding the function f root
+
+    :param f: Our function
+    :param g: The derivative function of f
+    :param currentX: The value of the middle domain range of the function
+    :return: The root of the function if existed, else according failed message
+    """
+    # Search the root within the maximum allowed iteration
+    for i in range(100):
+
+        # Variable to store the next X
+        nextX = currentX - f(currentX) / g(currentX)
+
+        # In case we found our root, Return the root and the iteration number
+        if abs(nextX - currentX) < MAX_ERROR:
+            return int(nextX * 10 ** 5) / 10 ** 5, i + 1
+
+        # Update the currentX to be the new one
+        currentX = nextX
+
+    # In case we didn't find the root within the allowed amount iteration, Send fail message and shut down the program
+    print('Failed To Find The Root, The Newton Raphson Method Is Not Suitable For This Function')
+    exit()
+    
+    
