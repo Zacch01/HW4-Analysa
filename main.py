@@ -126,8 +126,9 @@ def newtonRaphsonMethod(f, g, currentX):
     # In case we didn't find the root within the allowed amount iteration, Send fail message and shut down the program
     print('Failed To Find The Root, The Newton Raphson Method Is Not Suitable For This Function')
     exit()
-    
-    def secantMethod(f, previewX, currentX):
+
+
+def secantMethod(f, previewX, currentX):
     """
     Finding the function f root between the domain range [previewX To currentX]
 
