@@ -34,6 +34,12 @@ def rootFinder(f, startAt, endAt, selectedMethod):
     # Divide our function domain range into multiply domains with 0.1 range, then search for each one of them for a root
     while startAt < endAt:
 
+        # Check if the domain borders are roots
+        if f(startAt) == 0:
+            print('The root --> ' + str(startAt) + '\tIteration --> 0')
+            startAt = startAt + 0.1
+            continue
+
         # In case the function change its sign (Means there's at least one root)
         if f(startAt) * f(startAt + 0.1) < 0:
             if selectedMethod == '1':
@@ -66,6 +72,9 @@ def rootFinder(f, startAt, endAt, selectedMethod):
 
         # Update our domain for this iteration
         startAt = startAt + 0.1
+
+    if f(endAt) == 0:
+        print('The root --> ' + str(endAt) + '\tIteration --> 0')
 
 
 def bisectionMethod(f, left, right, iterationAllowed):
