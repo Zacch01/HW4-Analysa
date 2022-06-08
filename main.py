@@ -33,7 +33,6 @@ def rootFinder(f, startAt, endAt, selectedMethod):
 
     # Divide our function domain range into multiply domains with 0.1 range, then search for each one of them for a root
     while startAt < endAt:
-
         # Check if the domain borders are roots
         if f(startAt) == 0:
             print('The root --> ' + str(startAt) + '\tIteration --> 0')
@@ -119,12 +118,13 @@ def newtonRaphsonMethod(f, g, currentX):
     :param currentX: The value of the middle domain range of the function
     :return: The root of the function if existed, else according failed message
     """
+    print("Searching for roots")
     # Search the root within the maximum allowed iteration
     for i in range(100):
 
         # Variable to store the next X
         nextX = currentX - f(currentX) / g(currentX)
-
+        print(nextX)
         # In case we found our root, Return the root and the iteration number
         if abs(nextX - currentX) < MAX_ERROR:
             return int(nextX * 10 ** 5) / 10 ** 5, i + 1
@@ -147,12 +147,13 @@ def secantMethod(f, previewX, currentX):
     :return: The root of the function in the domain [previewX To currentX] if existed, else according failed message
     """
 
+    print("Searching for roots")
     # Search the root within the maximum allowed iteration
     for i in range(100):
 
         # Variable to store the next X
         nextX = (previewX * f(currentX) - currentX * f(previewX)) / (f(currentX) - f(previewX))
-
+        print(nextX)
         # In case we found our root, Return the root and the iteration number
         if abs(nextX - currentX) < MAX_ERROR:
             return int(nextX * 10 ** 5) / 10 ** 5, i + 1
@@ -171,9 +172,9 @@ def secantMethod(f, previewX, currentX):
 # Our Program Driver
 if __name__ == "__main__":
     x = sp.symbols('x')
-    function = x ** 4 + x ** 3 - 3 * x ** 2
+    function = (sp.sin(x ** 2 + 5 * x + 6)) / (2 * sp.exp(-x))
     domainStart = -3
-    domainEnd = 2
+    domainEnd = 1
 
     while True:
         userChoice = input('Input the wanted Method\n1 --> Bisection\n2 --> Newton-Raphson\n3 --> Secant\nInput --> ')
